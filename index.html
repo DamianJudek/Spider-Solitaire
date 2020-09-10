@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="author" content="Damian Judek" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link
+            href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+        <title>Solitaire</title>
+    </head>
+
+    <body>
+        <div class="field">
+            <div class="leftSide"></div>
+            <div class="places">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="rightSide"></div>
+        </div>
+        <div class="endGameScreen">
+            <p>You win!</p>
+            <button id="repeat">Play again</button>
+        </div>
+    </body>
+
+    <script src="scripts/cardGenerator.js"></script>
+    <script src="scripts/gameSettings.js"></script>
+    <script src="scripts/deck.js"></script>
+    <script src="scripts/game.js"></script>
+    <script src="scripts/move.js"></script>
+    <script src="scripts/main.js"></script>
+</html>

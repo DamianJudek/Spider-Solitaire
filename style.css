@@ -1,0 +1,406 @@
+:root {
+    --cardHeight: 45px;
+    --cardWidth: 32px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+div.field {
+    /* container */
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    position: relative;
+    min-height: 100vh;
+    min-width: 100vw;
+    /* background came from site pixabay: https://pixabay.com/pl/illustrations/drewno-tekstury-ciemne-black-1759566/ on license: "Pixabay License" */
+    background-image: url('img/wood.jpg');
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    -webkit-user-select: none;
+
+}
+
+div.field>img {
+    position: absolute;
+    width: var(--cardWidth);
+    height: var(--cardHeight);
+    cursor: pointer;
+    transform-origin: center center;
+}
+
+div.field img.moving {
+    transition: 0.4s;
+}
+
+div.field img.movingSlow {
+    transition: 0.8s;
+}
+
+div.leftSide {
+    width: 100%;
+}
+
+div.leftSide img {
+    margin-top: 2vh;
+    margin-left: 2vh;
+    width: var(--cardWidth);
+    height: var(--cardHeight);
+}
+
+div.places {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 20px;
+}
+
+div.places div {
+    width: var(--cardWidth);
+    height: var(--cardHeight);
+    background-color: rgb(255, 255, 255);
+    opacity: 0.3;
+    border-radius: 10%;
+}
+
+div.endGameScreen {
+    position: absolute;
+    opacity: 0;
+    display: none;
+    left: 50%;
+    top: 50%;
+    width: 80%;
+    height: 30%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(99, 99, 99);
+    border-radius: 20px;
+    text-align: center;
+    font-family: 'Roboto';
+}
+
+div.endGameScreen.active {
+    animation: 1s showGratulations linear 1 both;
+}
+
+div.endGameScreen p {
+    color: white;
+    font-size: 30px;
+    text-transform: uppercase;
+    line-height: 5vh;
+    user-select: none;
+
+}
+
+div.endGameScreen button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    padding: 20px;
+    background-color: rgb(64, 156, 231);
+    border: none;
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px;
+    border-radius: 50px;
+    font-family: 'Roboto';
+    /* user-select: none; */
+}
+
+div.endGameScreen button:hover {
+    animation: jumping 650ms linear 1 alternate;
+}
+
+
+/* orientation landscape */
+
+
+@media(orientation:landscape) and (min-width:560px) {
+    :root {
+        --cardHeight: 54px;
+        --cardWidth: 38px;
+    }
+
+    div.field {
+        flex-direction: row;
+    }
+
+    div.places {
+        margin-top: 5vh
+    }
+
+    div.leftSide {
+        width: auto;
+    }
+
+    div.endGameScreen {
+        width: 55%;
+        height: 40%;
+    }
+
+
+}
+
+@media(orientation:landscape) and (min-width:700px) {
+    :root {
+        --cardHeight: 54px;
+        --cardWidth: 38px;
+    }
+
+}
+
+@media(orientation:landscape) and (min-width:750px) {
+    :root {
+        --cardHeight: 70px;
+        --cardWidth: 46px;
+    }
+
+    div.places {
+        margin-top: 8vh
+    }
+
+    div.endGameScreen {
+        width: 45%;
+
+    }
+
+}
+
+@media(orientation:landscape) and (min-width:900px) {
+    :root {
+        --cardHeight: 80px;
+        --cardWidth: 50px;
+    }
+
+    div.endGameScreen {
+        width: 35%
+    }
+}
+
+@media(orientation:landscape) and (min-width:1000px) {
+
+    div.leftSide {
+        width: 10%;
+    }
+
+    div.rightSide {
+        width: 10%;
+    }
+}
+
+@media(orientation:landscape) and (min-width:1100px) {
+    :root {
+        --cardHeight: 95px;
+        --cardWidth: 70px;
+    }
+
+    div.places {
+        margin-top: 10vh
+    }
+
+    div.endGameScreen p {
+        line-height: 10vh;
+    }
+}
+
+@media(orientation:landscape) and (min-width:1250px) {
+    :root {
+        --cardHeight: 120px;
+        --cardWidth: 80px;
+    }
+}
+
+@media(orientation:landscape) and (min-width:1600px) {
+    :root {
+        --cardHeight: 130px;
+        --cardWidth: 86px;
+    }
+
+    div.leftSide img {
+        margin-top: 4.5vh;
+        margin-left: 4.5vh;
+    }
+
+    div.endGameScreen {
+        width: 20%;
+    }
+
+}
+
+/* orientation portrait  */
+
+@media(orientation:portrait) and (min-width:700px) {
+    :root {
+        --cardHeight: 70px;
+        --cardWidth: 48px;
+    }
+}
+
+
+
+@keyframes fall {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        top: 100%;
+        transform: rotate(120deg);
+    }
+}
+
+@keyframes cardFlipP {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+
+    }
+
+    20% {
+        transform: translate(8vw, -18vh) rotate(144deg);
+    }
+
+    40% {
+        transform: translate(16vw, -25vh) rotate(288deg);
+    }
+
+    60% {
+        transform: translate(24vw, -18vh) rotate(432deg);
+    }
+
+    80% {
+        transform: translate(32vw, -10vh) rotate(576deg);
+    }
+
+    100% {
+        transform: translate(40vw, 0) rotate(720deg);
+
+    }
+}
+
+@keyframes cardFlipL {
+
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+
+    }
+
+    20% {
+        transform: translate(-8vw, -18vh) rotate(-144deg);
+    }
+
+    40% {
+        transform: translate(-16vw, -25vh) rotate(-288deg);
+    }
+
+    60% {
+        transform: translate(-24vw, -18vh) rotate(-432deg);
+    }
+
+    80% {
+        transform: translate(-32vw, -10vh) rotate(-576deg);
+    }
+
+    100% {
+        transform: translate(-40vw, 0) rotate(-720deg);
+
+    }
+
+}
+
+@keyframes jumping {
+    5% {
+        transform: translate(-50%, -20%) scale(1, 1.018);
+    }
+
+    10% {
+        transform: translate(-50%, -20%) scale(1.020, 1.020);
+    }
+
+    15% {
+        transform: translate(-50%, -20%) scale(1.039, 1.022);
+    }
+
+    20% {
+        transform: translate(-50%, -20%) scale(1.045, 1.049);
+    }
+
+    25% {
+        transform: translate(-50%, -20%) scale(1.066, 1.055);
+    }
+
+    30% {
+        transform: translate(-50%, -20%) scale(1.067, 1.067);
+    }
+
+    35% {
+        transform: translate(-50%, -20%) scale(1.080, 1.080);
+    }
+
+    40% {
+        transform: translate(-50%, -20%) scale(1.090, 1.090);
+    }
+
+    45% {
+        transform: translate(-50%, -20%) scale(1.115, 1.096);
+    }
+
+    50% {
+        transform: translate(-50%, -20%) scale(1.130, 1.105);
+    }
+
+    55% {
+        transform: translate(-50%, -20%) scale(1.125, 1.080);
+    }
+
+    60% {
+        transform: translate(-50%, -20%) scale(1.123, 1.070);
+    }
+
+    65% {
+        transform: translate(-50%, -20%) scale(1.121, 1.040);
+    }
+
+    70% {
+        transform: translate(-50%, -20%) scale(1.115, 1.067);
+    }
+
+    75% {
+        transform: translate(-50%, -20%) scale(1.1, 1.080);
+    }
+
+    80% {
+        transform: translate(-50%, -20%) scale(1.09, 1.096);
+    }
+
+    85% {
+        transform: translate(-50%, -20%) scale(1.078, 1.057);
+    }
+
+    90% {
+        transform: translate(-50%, -20%) scale(1.056, 1.040);
+    }
+
+    95% {
+        transform: translate(-50%, -20%) scale(1.03, 1.020);
+    }
+
+    100% {
+        transform: translate(-50%, -20%) scale(1, 1);
+    }
+
+}
+
+@keyframes showGratulations {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
